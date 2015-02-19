@@ -154,10 +154,10 @@ jQuery(document).ready(function($) {
             <form id="delete<?php echo $hp_testimonial_result[$j][1]; ?>" method="post">
         	<input type="hidden" name="action" value="delete">
         	<input type="hidden" name="id" value="<?php echo $hp_testimonial_result[$j][1]; ?>">
-        	<img style="cursor: pointer;" src="<?php echo plugins_url( 'assets/images/delete_btn.png', __FILE__ ); ?>" onclick="deleteFunction()">
+        	<img style="cursor: pointer;" src="<?php echo plugins_url( 'assets/images/delete_btn.png', __FILE__ ); ?>" onclick="deleteFunction<?php echo $hp_testimonial_result[$j][1]; ?>()">
             </form>
             <script>
-            function deleteFunction() {
+            function deleteFunction<?php echo $hp_testimonial_result[$j][1]; ?>() {
                 document.getElementById("delete<?php echo $hp_testimonial_result[$j][1]; ?>").submit();
             }
             </script>
