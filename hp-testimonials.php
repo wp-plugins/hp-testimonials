@@ -2,8 +2,8 @@
 /**
 * Plugin Name: HP Testimonials
 * Plugin URI: http://www.harshitpeer.com/hp_testimonial_wordpress_plugin
-* Description: A Simple Testimonial Plugin where you can add testimonial which will be shown on your site wherever you want.
-* Version: 1.0.0
+* Description: HP Testimonials is a simple Testimonial Plugin which shows your Testimonial in a awesome slider animation and more importantly in the order given by you.
+* Version: 1.0.1
 * Author: Harshit Peer
 * Author URI: http://www.harshitpeer.com/
 **/
@@ -40,7 +40,7 @@ register_activation_hook(__FILE__, 'hp_testimonials_activate');
 
 //Following code will create admin menu
 function hp_testimonials_admin() {
-    add_menu_page( 'HP Testimonials', 'HP Testimonials', 'manage_options', 'hp-testimonials/hp-testimonials-view.php', '', '', 7 );
+    add_menu_page( 'HP Testimonials', 'HP Testimonials', 'manage_options', 'hp-testimonials/hp-testimonials-view.php', '', plugins_url( 'assets/images/icon.png', __FILE__ ), 7 );
     add_submenu_page('hp-testimonials/hp-testimonials-view.php','Add New','Add New','manage_options', __FILE__.'hp_testimonials_add_new','hp_testimonials_add_new');
     add_submenu_page('hp-testimonials/hp-testimonials-view.php','Settings','Settings','manage_options', __FILE__.'hp_testimonials_settings','hp_testimonials_settings');
 }

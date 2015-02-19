@@ -2,6 +2,10 @@
 require_once( ABSPATH . '/wp-admin/includes/upgrade.php' );
 global $wpdb;
 wp_enqueue_style( 'hp_testimonials_view', plugins_url( 'assets/css/style.css', __FILE__ ), false, '1.0', 'all' ); 
+wp_enqueue_style( 'jquery_ui', plugins_url( 'assets/css/jquery-ui.css', __FILE__ ), false, '1.0', 'all' ); 
+wp_enqueue_script('jquery');
+wp_enqueue_script('jquery-ui-dialog'); 
+wp_enqueue_script('jquery-effects-fade');	
 if(isset($_POST['action'])) {
     if($_POST['action']=='delete') {
         $testo_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
@@ -9,6 +13,50 @@ if(isset($_POST['action'])) {
 	$main_table = $table_prefix."hp_testimonials";
 	$deletemain = "DELETE FROM ".$main_table." WHERE hp_testi_id = ".$testo_id;
         $wpdb->query($deletemain);
+    }
+    if($_POST['action']=="editview") {
+        $testo_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+	$table_prefix = $wpdb->prefix;
+	$main_table = $table_prefix."hp_testimonials";
+        $edit_testo_data = $wpdb->get_row("SELECT * FROM $main_table WHERE hp_testi_id = $testo_id");
+        ?>
+<script>
+jQuery(document).ready(function($) {
+    $("#hp_testi_loading").fadeOut(500);
+    $(".hp_testimonials_new_css").delay(500).fadeIn(1000);
+});
+</script>
+<div style="margin: 30px;" id="hp_testi_loading">Loading... Please Wait</div>
+<div style="display: none;" class="hp_testimonials_new_css">
+    <div class="main_logo"></div>
+        <form style="margin: 20px;" id="edit_form" method="post">
+            <input type="hidden" name="action" value="edit">
+            <input type="hidden" name="hp_testi_id" value="<?php echo $edit_testo_data->hp_testi_id; ?>">
+            <input class="styledinput" type="text" placeholder="Name" value="<?php echo $edit_testo_data->hp_testi_name; ?>" name="hp_testi_name"/><br>
+            <input class="styledinput" type="text" placeholder="Company (Optional)" value="<?php echo $edit_testo_data->hp_testi_company; ?>" name="hp_testi_company"/><br>
+            <input class="styledinput" type="text" placeholder="Designation (Optional)" value="<?php echo $edit_testo_data->hp_testi_designation; ?>" name="hp_testi_designation"/><br>
+            <select class="styledselect" name="hp_testi_rating">
+                <option value="">Choose Rating on Scale of 0 to 10 (Default is 5)</option>
+                <option value="0" <?php if($edit_testo_data->hp_testi_rating==0) { echo "selected"; }  ?>>0</option>
+                <option value="1" <?php if($edit_testo_data->hp_testi_rating==1) { echo "selected"; }  ?>>1</option>
+                <option value="2" <?php if($edit_testo_data->hp_testi_rating==2) { echo "selected"; }  ?>>2</option>
+                <option value="3" <?php if($edit_testo_data->hp_testi_rating==3) { echo "selected"; }  ?>>3</option>
+                <option value="4" <?php if($edit_testo_data->hp_testi_rating==4) { echo "selected"; }  ?>>4</option>
+                <option value="5" <?php if($edit_testo_data->hp_testi_rating==5) { echo "selected"; }  ?>>5</option>
+                <option value="6" <?php if($edit_testo_data->hp_testi_rating==6) { echo "selected"; }  ?>>6</option>
+                <option value="7" <?php if($edit_testo_data->hp_testi_rating==7) { echo "selected"; }  ?>>7</option>
+                <option value="8" <?php if($edit_testo_data->hp_testi_rating==8) { echo "selected"; }  ?>>8</option>
+                <option value="9" <?php if($edit_testo_data->hp_testi_rating==9) { echo "selected"; }  ?>>9</option>
+                <option value="10" <?php if($edit_testo_data->hp_testi_rating==10) { echo "selected"; }  ?>>10</option>
+            </select> 
+            <div style="margin-top: 10px; width: 98%;">
+            <?php wp_editor($edit_testo_data->hp_testi_text, "hp_testi_text".$edit_testo_data->hp_testi_id ); ?>
+            </div>
+            <input style="height: 50px;" type="submit" class="hp_testimonials_button green" value="Edit Testimonial">
+        </form>
+</div>
+        <?php
+        return;
     }
     if($_POST['action']=='edit') {
 	global $hp_testi_error,$hp_testi_success;
@@ -40,7 +88,7 @@ if(isset($_POST['action'])) {
     }
 }
 $db_table_name = $wpdb->prefix . 'hp_testimonials';
-$sql = "SELECT * FROM ".$db_table_name;
+$sql = "SELECT hp_testi_id, hp_testi_name, hp_testi_date, hp_testi_rating FROM ".$db_table_name;
 $resultset_hp_testimonials = $wpdb->get_results($sql);
 $i = 1;
 if($resultset_hp_testimonials==NULL) {
@@ -50,17 +98,11 @@ if($resultset_hp_testimonials==NULL) {
         $hp_testimonial_result[$i][1] = $result_hp_testimonials->hp_testi_id;
         $hp_testimonial_result[$i][2] = $result_hp_testimonials->hp_testi_name;
         $hp_testimonial_result[$i][3] = $result_hp_testimonials->hp_testi_date;
-        $hp_testimonial_result[$i][4] = $result_hp_testimonials->hp_testi_company;
-        $hp_testimonial_result[$i][5] = $result_hp_testimonials->hp_testi_designation;
         $hp_testimonial_result[$i][6] = $result_hp_testimonials->hp_testi_rating;
-        $hp_testimonial_result[$i][7] = $result_hp_testimonials->hp_testi_text;
         $i++;
     }
 }
-wp_enqueue_style( 'jquery_ui', plugins_url( 'assets/css/jquery-ui.css', __FILE__ ), false, '1.0', 'all' ); 
-wp_enqueue_script('jquery');
-wp_enqueue_script('jquery-ui-dialog'); 
-wp_enqueue_script('jquery-effects-fade');	 
+ 
 ?>
 <script>
 jQuery(document).ready(function($) {
@@ -101,54 +143,16 @@ jQuery(document).ready(function($) {
         <td><?php echo(date("d M Y",$hp_testimonial_result[$j][3])); ?></td>
         <td>[hp_testimonials_single id=<?php echo $hp_testimonial_result[$j][1]; ?>]</td>
         <td>  
+            <form id="edit<?php echo $hp_testimonial_result[$j][1]; ?>" method="post">
+        	<input type="hidden" name="action" value="editview">
+        	<input type="hidden" name="id" value="<?php echo $hp_testimonial_result[$j][1]; ?>">
+        	<img style="cursor: pointer;" src="<?php echo plugins_url( 'assets/images/edit_btn.png', __FILE__ ); ?>" onclick="editFunction<?php echo $hp_testimonial_result[$j][1]; ?>()">
+            </form>
             <script>
-            jQuery(document).ready(function($) {
-            $( "#dialog<?php echo $hp_testimonial_result[$j][1]; ?>" ).dialog({
-            autoOpen: false,
-            width: $(window).width()-400,
-            height: $(window).height()-100,
-            show: {
-            effect: "fade",
-            duration: 1000
-            },
-            hide: {
-            effect: "fade",
-            duration: 1000
+            function editFunction<?php echo $hp_testimonial_result[$j][1]; ?>() {
+                document.getElementById("edit<?php echo $hp_testimonial_result[$j][1]; ?>").submit();
             }
-            });
-            $( "#opener<?php echo $hp_testimonial_result[$j][1]; ?>" ).click(function() {
-            $( "#dialog<?php echo $hp_testimonial_result[$j][1]; ?>" ).dialog( "open" );
-            });
-            });
             </script>
-            <div id="dialog<?php echo $hp_testimonial_result[$j][1]; ?>" title="Edit Testimonial">
-                <form id="edit_form" method="post">
-                    <input type="hidden" name="action" value="edit">
-                    <input type="hidden" name="hp_testi_id" value="<?php echo $hp_testimonial_result[$j][1]; ?>">
-                    <input class="styledinput" type="text" placeholder="Name" value="<?php echo $hp_testimonial_result[$j][2]; ?>" name="hp_testi_name"/><br>
-                    <input class="styledinput" type="text" placeholder="Company (Optional)" value="<?php echo $hp_testimonial_result[$j][4]; ?>" name="hp_testi_company"/><br>
-                    <input class="styledinput" type="text" placeholder="Designation (Optional)" value="<?php echo $hp_testimonial_result[$j][5]; ?>" name="hp_testi_designation"/><br>
-                    <select class="styledselect" name="hp_testi_rating">
-                        <option value="">Choose Rating on Scale of 0 to 10 (Default is 5)</option>
-                        <option value="0" <?php if($hp_testimonial_result[$j][6]==0) { echo "selected"; }  ?>>0</option>
-                        <option value="1" <?php if($hp_testimonial_result[$j][6]==1) { echo "selected"; }  ?>>1</option>
-                        <option value="2" <?php if($hp_testimonial_result[$j][6]==2) { echo "selected"; }  ?>>2</option>
-                        <option value="3" <?php if($hp_testimonial_result[$j][6]==3) { echo "selected"; }  ?>>3</option>
-                        <option value="4" <?php if($hp_testimonial_result[$j][6]==4) { echo "selected"; }  ?>>4</option>
-                        <option value="5" <?php if($hp_testimonial_result[$j][6]==5) { echo "selected"; }  ?>>5</option>
-                        <option value="6" <?php if($hp_testimonial_result[$j][6]==6) { echo "selected"; }  ?>>6</option>
-                        <option value="7" <?php if($hp_testimonial_result[$j][6]==7) { echo "selected"; }  ?>>7</option>
-                        <option value="8" <?php if($hp_testimonial_result[$j][6]==8) { echo "selected"; }  ?>>8</option>
-                        <option value="9" <?php if($hp_testimonial_result[$j][6]==9) { echo "selected"; }  ?>>9</option>
-                        <option value="10" <?php if($hp_testimonial_result[$j][6]==10) { echo "selected"; }  ?>>10</option>
-                    </select> 
-                    <div style="margin-top: 10px; width: 98%;">
-                    <?php wp_editor($hp_testimonial_result[$j][7], "hp_testi_text".$hp_testimonial_result[$j][1] ); ?>
-        		</div>
-                    <input style="height: 50px;" type="submit" class="hp_testimonials_button green" value="Edit Testimonial">
-                </form>
-            </div> 
-            <img id="opener<?php echo $hp_testimonial_result[$j][1]; ?>" style="cursor: pointer;" src="<?php echo plugins_url( 'assets/images/edit_btn.png', __FILE__ ); ?>">
         </td>
         <td>
             <form id="delete<?php echo $hp_testimonial_result[$j][1]; ?>" method="post">
@@ -165,8 +169,4 @@ jQuery(document).ready(function($) {
     </tr>
     <?php }} ?>
 </div>
-<form method="post">
-    <input type="hidden" name="action" value="editt">
-    <input type="submit">
-</form>
 
