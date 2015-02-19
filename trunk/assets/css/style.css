@@ -1,0 +1,314 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13 Feb, 2015, 10:49:59 AM
+    Author     : Harshit-PC
+*/
+
+.testo_table {
+    margin-top: 30px;
+}
+
+.testo_table .main_logo {
+    background: url(../images/create-testimonial-image.png) no-repeat;
+    width: 197px;
+    height: 40px;
+    margin: 20px;
+}
+
+.top_logo_area {
+    height: 40px;
+}
+
+.view_main_logo {
+    background: url(../images/view-testimonial-image.png) no-repeat;
+    width: 197px;
+    height: 40px;
+    margin: 20px;
+    float:left;
+}
+
+.top_rating_shortcode {
+    float:right;
+    height: 40px;
+    margin: 20px 100px 0px 0px;
+}
+
+table#view_testo_table a:link {
+    color: #666;
+    font-weight: bold;
+    text-decoration:none;
+}
+
+table#view_testo_table a:visited {
+    color: #999999;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+table#view_testo_table a:active,
+table#view_testo_table a:hover {
+    color: #bd5a35;
+    text-decoration:underline;
+}
+
+table#view_testo_table {
+    color:#666;
+    font-size:13px;
+    text-shadow: 1px 1px 0px #fff;
+    background:#eaebec;
+    border:#ccc 1px solid;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+}
+
+table#view_testo_table th {
+    padding:11px 5px 12px 5px;
+    border-top:1px solid #fafafa;
+    border-bottom:1px solid #e0e0e0;
+    line-height: 18px;
+    background: #ededed;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+    background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+}
+
+table#view_testo_table th:first-child{
+    text-align: left;
+    padding-left:20px;
+}
+
+table#view_testo_table tr:first-child th:first-child{
+    -moz-border-radius-topleft:3px;
+    -webkit-border-top-left-radius:3px;
+    border-top-left-radius:3px;
+}
+
+table#view_testo_table tr:first-child th:last-child{
+    -moz-border-radius-topright:3px;
+    -webkit-border-top-right-radius:3px;
+    border-top-right-radius:3px;
+}
+
+table#view_testo_table tr{
+    text-align: center;
+    padding-left:20px;
+}
+
+table#view_testo_table tr td:first-child{
+    text-align: left;
+    padding-left:20px;
+    border-left: 0;
+}
+
+table#view_testo_table tr td {
+    padding:10px;
+    border-top: 1px solid #ffffff;
+    border-bottom:1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;	
+    background: #fafafa;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+    background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+}
+
+table#view_testo_table tr.even td{
+    background: #f6f6f6;    
+    background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+    background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
+}
+
+table#view_testo_table tr:last-child td{
+    border-bottom:0;
+}
+
+table#view_testo_table tr:last-child td:first-child{
+    -moz-border-radius-bottomleft:3px;
+    -webkit-border-bottom-left-radius:3px;
+    border-bottom-left-radius:3px;
+}
+
+table#view_testo_table tr:last-child td:last-child{
+    -moz-border-radius-bottomright:3px;
+    -webkit-border-bottom-right-radius:3px;
+    border-bottom-right-radius:3px;
+}
+table#view_testo_table tr:hover td{
+    background: #f2f2f2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+    background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
+}
+
+.hp_testimonials_new_css {
+    margin-top: 30px;
+}
+
+.hp_testimonials_new_css .main_logo {
+    background: url(../images/create-testimonial-image.png) no-repeat;
+    width: 197px;
+    height: 40px;
+    margin: 20px;
+}
+
+.hp_testimonials_new_css form#add_new_form {
+    margin: 20px;
+}
+
+input[type="text"].styledinput,select.styledselect {
+    height: 50px !important; 
+    padding: 0px 17px !important;  
+    margin: 10px 0px !important; 
+    width: 98%;
+    border-radius: 4px; 
+    -moz-border-radius: 4px; 
+    -webkit-border-radius: 4px; 
+    -o-border-radius: 4px;  
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.2) inset; 
+    -moz-box-shadow: 0px 0px 3px rgba(0,0,0,0.2) inset; 
+    -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.2) inset; 
+    -o-box-shadow: 0px 0px 3px rgba(0,0,0,0.2) inset; 
+}
+
+textarea {
+    height: 200px; 
+    padding: 15px 17px;  
+    margin: 10px 0px; 
+    width: 98%;
+    border-radius: 4px; 
+    -moz-border-radius: 4px; 
+    -webkit-border-radius: 4px; 
+    -o-border-radius: 4px;  
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.2) inset; 
+    -moz-box-shadow: 0px 0px 3px rgba(0,0,0,0.2) inset; 
+    -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.2) inset; 
+    -o-box-shadow: 0px 0px 3px rgba(0,0,0,0.2) inset; 
+}
+
+.hp_testimonials_button {
+    height: 40px;
+    line-height: 30px;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 98%;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.blue {
+    background: #00b7ea; /* Old browsers */
+    background: -moz-linear-gradient(top,  #00b7ea 0%, #009ec3 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00b7ea), color-stop(100%,#009ec3)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #00b7ea 0%,#009ec3 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #00b7ea 0%,#009ec3 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #00b7ea 0%,#009ec3 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #00b7ea 0%,#009ec3 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7ea', endColorstr='#009ec3',GradientType=0 ); /* IE6-9 */
+}
+
+.green {
+    background: #b6e026; /* Old browsers */
+    background: -moz-linear-gradient(top,  #b6e026 0%, #abdc28 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b6e026), color-stop(100%,#abdc28)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #b6e026 0%,#abdc28 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #b6e026 0%,#abdc28 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #b6e026 0%,#abdc28 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #b6e026 0%,#abdc28 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b6e026', endColorstr='#abdc28',GradientType=0 ); /* IE6-9 */
+}
+    
+.success {
+    color: #357d00;
+    background: #fff;
+    border: 1px solid #357d00;
+    border-left-width: 5px;
+    height: 50px;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
+    margin: 5px 15px 2px;
+    padding: 1px 12px;
+    line-height: 50px;
+    margin-bottom: 20px !important;
+    position: fixed; 
+    bottom: 10px;
+    right: 10px;
+    width: 320px;
+    z-index: 9999;
+}
+
+.error {
+    color: #cc0000;
+    background: #ff9999;
+    border: 1px solid #cc0000;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 17px;  
+    margin-bottom: 20px !important;
+    position: fixed; 
+    bottom: 10px;
+    right: 10px;
+    width: 320px;
+    z-index: 9999;
+}
+
+.hp_testimonials {
+    margin: 10px 0px 10px 0px;
+    width: 100%;
+    height: auto;
+}
+
+.hp_testimonials p.text {
+    text-align: justify;
+    text-justify: inter-word;
+    font-style: italic;
+}
+
+.featuredtext {
+    font-weight: bold;
+    text-align: center;
+    font-size: larger;
+    margin-bottom: 10px;
+}
+
+.startquote {
+    margin: 0px 10px;
+}
+
+.rightdiv {
+    height: 25px;
+    margin-top: -10px;
+}
+
+.rightdiv .testiodetails {
+    float:right;
+}
+
+.slider {
+    -ms-touch-action: pan-y; /* Prevent default touch actions on Windows 8. Only required for IE10 */
+    overflow: auto; /* Not required but recommended for accessibility when JavaScript is turned off */
+    position: relative;
+    touch-action: pan-y; /* Prevent default touch actions on Windows 8. Supported in IE11+ */
+}
+
+/* AnySlider can be styled to your liking. This is just example styles */
+.slider {
+    height: 250px;
+    width: 100%;
+}  
+
+/* HP Testimonials Settings PAge */
+
+.settings_main_logo {
+    background: url(../images/settings-testimonial-image.png) no-repeat;
+    width: 197px;
+    height: 43px;
+    margin: 20px;
+    margin-top: 30px;
+}
+
+.settings_table {
+    width: 95%;
+    margin-left: 20px;
+}
